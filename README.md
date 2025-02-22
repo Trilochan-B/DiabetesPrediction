@@ -1,0 +1,1 @@
+## This a Diabetes prediction model trained on ANN
