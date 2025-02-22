@@ -1,9 +1,11 @@
 import streamlit as st
 import pandas as pd
 import pickle
-from tensorflow.keras.models import load_model
+# from tensorflow.keras.models import load_model
 
-model = load_model('diabetes_model.h5')
+# model = load_model('diabetes_model.h5')
+with open('model.pkl','rb') as f:
+    model = pickle.load(f)
 with open('gender_encoder.pkl','rb') as f:
     gender_encoder = pickle.load(f)
 with open('smoking_encoder.pkl','rb') as f:
