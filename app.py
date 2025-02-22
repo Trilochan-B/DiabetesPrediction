@@ -1,9 +1,9 @@
 import streamlit as st
 import pandas as pd
 import pickle
-# from tensorflow.keras.models import load_model
+from tensorflow.keras.models import load_model
 
-# model = load_model('diabetes_model.h5')
+model = load_model('diabetes_model.h5')
 # with open('model.pkl','rb') as f:
 #     model = pickle.load(f)
 with open('gender_encoder.pkl','rb') as f:
@@ -56,11 +56,11 @@ if but == True:
     smoking_df = pd.DataFrame(smoke_data.toarray(), columns=smoke_encoder.get_feature_names_out(['smoking_history']))
     data = pd.concat([input_df.drop('smoking_history', axis=1), smoking_df], axis=1)
     input_scaled = scaler.transform(data)
-    # score = model.predict(input_scaled)[0][0]
-    # if score > 0.5:
-    #     st.write('There is diabetes in your body.')
-    # else:
-    #     st.write('There is no diabetes in your body.')
+    score = model.predict(input_scaled)[0][0]
+    if score > 0.5:
+        st.write('There is diabetes in your body.')
+    else:
+        st.write('There is no diabetes in your body.')
 
 
 
